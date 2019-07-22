@@ -9,6 +9,31 @@
 </head>
 
 <body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        {{#unless currentUser}}
+        <li>
+          <a href="/auth/login">Log in</a>
+          </li>
+        <li>
+          <a href="/auth/signup">Sign up</a>
+        </li>
+        {{/unless}}
+        {{#if currentUser}}
+        <li>
+          <form action="/auth/logout" method="POST">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
+        <li>
+          <a href="/users/private">Private page</a>
+        </li>
+        {{/if}}
+      </ul>
+    </nav>
+  </header>
   {{{body}}}
 </body>
 </html>
