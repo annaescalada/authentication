@@ -5,3 +5,8 @@
   <input type="password" name="password" id="password" required placeholder="Password">
   <button type="submit">Log in</button>
 </form>
+{{#if messages.length}}
+<ul class="validation">
+  {{#each messages}}<li>{{this}}</li>{{/each}}
+</ul>
+{{/if}}

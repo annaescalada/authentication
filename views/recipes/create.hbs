@@ -1,7 +1,4 @@
-<h2>Private page</h2>
-<p>Welcome {{currentUser.username}}</p>
-
-<form class="recipe-form">
+<form action="/recipes/create" method="POST">
   <label for="title">title</label>
   <input type="text" name="title" id="title" required>
   <select name="level" id="level">
@@ -13,18 +10,5 @@
   <input type="text" name="cuisine" id="cuisine" required>
   <label for="duration">Duration</label>
   <input type="number" name="duration" id="duration">
-  <button class="recipe-create" type="submit">Add Recipe to my account</button>
+  <button type="submit">Add Recipe to my account</button>
 </form>
-
-<section class="errors"></section>
-
-<section class="recipe-list">
-  {{#each recipes}}
-  <article>
-    <p>{{title}} - {{level}}</p>
-    <button id={{_id}}>Delete</button>
-  </article>
-  {{/each}}
-</section>
-
-<script src="../javascripts/main.js"></script>

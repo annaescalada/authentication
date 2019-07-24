@@ -10,7 +10,11 @@ const User = require('../models/User.js');
 const router = express.Router();
 
 router.get('/signup', isLoggedIn, (req, res, next) => {
-  res.render('signup');
+  const data = {
+    messages: req.flash('errorFormNotFilled'),
+    formData: req.flash('errorDataForm')
+  };
+  res.render('signup', data);
 });
 
 router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
@@ -34,7 +38,10 @@ router.post('/signup', isLoggedIn, isFormFilled, async (req, res, next) => {
 });
 
 router.get('/login', isLoggedIn, (req, res, next) => {
-  res.render('login');
+  const data = {
+    messages: req.flash('wrongPassword')
+  };
+  res.render('login', data);
 });
 
 router.post('/login', isLoggedIn, isFormFilled, async (req, res, next) => {
@@ -50,6 +57,7 @@ router.post('/login', isLoggedIn, isFormFilled, async (req, res, next) => {
       console.log('password ok');
       res.redirect('/');
     } else {
+      req.flash('wrongPassword', 'Wrong password');
       res.redirect('/auth/login');
     }
   } catch (error) {
